@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>LIST APP</title>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <header>
+      <a href="/" class="header-logo">TOP</a>
+      <a href="/list" class="header-logo">一覧</a>
+      <a class="title1-logo">懐怪物</a>
+    </header>
+    <div class="container">
+      <% var sum = 0; %>
+      <%= games.forEach((game) => { sum = sum + game.stock; }) %>
+      <script>
+        function clickBtn(){
+          const list = []; 
+          const chacks = document.getElementsByName("chack");
+          for (let i = 0; i < chacks.length; i++){
+		        if(chacks[i].checked){ 
+
+			        list.push(chacks[i].value);
+		        }
+          }
+          if(list == ''){
+            list.push(0);
+          }
+          document.getElementById("select").setAttribute("href", document.getElementById("select").getAttribute("href") + list);
+        };
+      </script>
+      <h3 class="sum">合計：<%= sum %></h3>
+      <div class="container-header">
+        <a href="/new2" class="new-button">+ 新規登録</a>
+        <a href="/selectdelete2/" class="delete-button" id="select" onclick="clickBtn()"/>選択削除</a>
+        <a href="/alldelete2" class="delete-button">全削除</a>
+      </div>
+      <div class="list-table-wrapper">
+        <div class="table-head">
+          <span class="chack"></span>
+          <span class="id-column">枚数</span>
+          <span>名前</span>
+        </div>
+        <ul class="table-body">
+          <% games.forEach((game) => { %>
+            <li>
+              <div class="data" name="aaa">
+                <input type="checkbox" class="chack" name="chack" value="<%= game.id %>">
+                <span class="id-column"><%= game.stock %></span>
+                <span class="name-column"><%= game.name %></span>
+              </div>
+              <div class="menu">
+                <a href="/edit2/<%= game.id %>">編集</a>
+                <form action="/delete2/<%= game.id %>" method="post">
+                  <input type="submit" value="削除">
+                </form>
+              </div>
+            </li>
+          <% }) %>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

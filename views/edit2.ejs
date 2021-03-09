@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>LIST APP</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/send_url.js"></script>
+  </head>
+  <body>
+    <header>
+      <a href="/" class="header-logo">TOP</a>
+      <a href="/list" class="header-logo">一覧</a>
+      <a class="title1-logo">懐怪物</a>
+    </header>
+    <div class="container">
+      <div class="container-header">
+        <h1>編集</h1>
+      </div>
+      <div class="form-wrapper">
+        <p class="form-label">数変更</p>
+        <form action="/update2/<%= game.id %>" method="post">
+          名前：<input type="text" name="gameName" value="<%= game.name %>" disabled><br>
+          詳細：<textarea type="text" name="gameDetails" cols="90" rows="10" disabled><%= game.details %></textarea><br>
+          枚数：<input type="number" name="gameStock" value="<%= game.stock %>" min="1" max="4">
+          <input type="submit" value="更新する">
+        </form>
+      </div>
+      <a href="/game" class="cancel-button">もどる</a>
+    </div>
+  </body>
+</html>

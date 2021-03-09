@@ -1,0 +1,13 @@
+mysql -u root -p 
+root
+
+DROP TABLE list_app;
+DROP DATABASE list_app;
+
+CREATE DATABASE list_app;
+USE list_app;
+CREATE TABLE spirits (id INT AUTO_INCREMENT, name TEXT, details TEXT, stock INT, PRIMARY KEY (id)) DEFAULT CHARSET=utf8;
+
+ALTER TABLE `spirits` auto_increment = 1;
+ALTER TABLE `games` auto_increment = 1;
+ALTER TABLE `guards` auto_increment = 1;
